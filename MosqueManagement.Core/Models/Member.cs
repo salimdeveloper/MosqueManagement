@@ -1,6 +1,6 @@
 namespace MosqueManagement.Core.Models
 {
-    public class Member : BaseDomainModel
+    public class Member 
     {
         public int Id { get; set; }
         public string FName { get; set; }
