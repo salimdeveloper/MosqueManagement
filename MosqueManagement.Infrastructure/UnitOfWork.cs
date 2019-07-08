@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MosqueManagement.Infrastructure
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
         public IAddressRepository Addresses { get; private set; }
@@ -16,6 +16,7 @@ namespace MosqueManagement.Infrastructure
         {
             _context = context;
             Addresses = new AddressRepository(context);
+            Members = new MemberRepository(context);
         }
         public void Complete()
         {

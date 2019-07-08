@@ -8,7 +8,7 @@ namespace MosqueManagement.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : MosqueManagementController
     {
         // GET api/values
         [HttpGet]

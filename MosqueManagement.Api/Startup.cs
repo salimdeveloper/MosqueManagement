@@ -11,7 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MosqueManagement.Core.Interfaces;
 using MosqueManagement.Infrastructure.Data;
+using MosqueManagement.Infrastructure;
 
 namespace MosqueManagement.Api
 {
@@ -28,10 +30,12 @@ namespace MosqueManagement.Api
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Server=(localdb)\mssqllocaldb;Database=MosqueMg_Devdb;Trusted_Connection=True;";
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("MosqueManagement.Web")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("MosqueManagement.Api")));
 
             services.AddControllers()
                 .AddNewtonsoftJson();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
